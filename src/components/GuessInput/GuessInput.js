@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 
-function GuessInput({ guessList, setGuessList, answer, setGameStatus, gameStatus, numberOfGuesses, setNumberOfGuesses }) {
+function GuessInput({
+  guessList,
+  setGuessList,
+  answer,
+  setGameStatus,
+  gameStatus,
+  numberOfGuesses,
+  setNumberOfGuesses,
+}) {
   const [guess, setGuess] = useState("");
 
   return (
@@ -14,18 +22,18 @@ function GuessInput({ guessList, setGuessList, answer, setGameStatus, gameStatus
         }
         const nextGuessList = [...guessList, guess];
         setGuessList(nextGuessList);
-        setNumberOfGuesses(numberOfGuesses + 1);
         setGuess("");
 
         if (numberOfGuesses < NUM_OF_GUESSES_ALLOWED - 1) {
+          setNumberOfGuesses(numberOfGuesses + 1);
           if (answer === guess) {
-            setGameStatus('win');
+            setGameStatus("win");
           }
         } else {
           if (answer === guess) {
-            setGameStatus('win');
+            setGameStatus("win");
           } else {
-            setGameStatus('lost');
+            setGameStatus("lost");
           }
         }
         /* console.log({ guess }); */
@@ -36,7 +44,7 @@ function GuessInput({ guessList, setGuessList, answer, setGameStatus, gameStatus
       <input
         type="text"
         required={true}
-        disabled={gameStatus !== 'running'}
+        disabled={gameStatus !== "running"}
         minLength="5"
         maxLength="5"
         value={guess}

@@ -13,14 +13,28 @@ console.info({ answer });
 
 function Game() {
   const [guessList, setGuessList] = useState([]);
-  const [gameStatus, setGameStatus] = useState('running');
+  const [gameStatus, setGameStatus] = useState("running");
   const [numberOfGuesses, setNumberOfGuesses] = useState(0);
 
   return (
     <>
       <GuessList guessList={guessList} answer={answer} />
-      <GuessInput guessList={guessList} setGuessList={setGuessList} gameStatus={gameStatus} setGameStatus={setGameStatus} answer={answer} numberOfGuesses={numberOfGuesses} setNumberOfGuesses={setNumberOfGuesses}/>
-      {gameStatus !== "running" && <WinOrFailBanner gameStatus={gameStatus} answer={answer} numberOfGuesses={numberOfGuesses} />}
+      <GuessInput
+        guessList={guessList}
+        setGuessList={setGuessList}
+        gameStatus={gameStatus}
+        setGameStatus={setGameStatus}
+        answer={answer}
+        numberOfGuesses={numberOfGuesses}
+        setNumberOfGuesses={setNumberOfGuesses}
+      />
+      {gameStatus !== "running" && (
+        <WinOrFailBanner
+          gameStatus={gameStatus}
+          answer={answer}
+          numberOfGuesses={numberOfGuesses}
+        />
+      )}
     </>
   );
 }
