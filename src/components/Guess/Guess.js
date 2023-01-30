@@ -13,7 +13,7 @@ function Guess({ guess, checkedGuess }) {
       {range(5).map((num) => {
         const status = guess ? letterStatusAgainstAnswer(guess[num], checkedGuess) : undefined;
         return (
-          <span key={num} className={`cell ${status}`}>
+          <span key={num} className={guess ? `cell ${status}` : 'cell'}>
             {guess ? guess[num] : undefined}
           </span>
         );
