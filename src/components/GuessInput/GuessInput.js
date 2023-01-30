@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 
-function GuessInput({ guessList, setGuessList }) {
+function GuessInput({ guessList, setGuessList, answer, setGameStatus, gameStatus, numberOfGuesses, setNumberOfGuesses }) {
   const [guess, setGuess] = useState("");
 
   return (
@@ -11,12 +12,23 @@ function GuessInput({ guessList, setGuessList }) {
           window.alert("Your guess should be 5 characters long 💖");
           return;
         }
-        console.log({ guess });
-
         const nextGuessList = [...guessList, guess];
         setGuessList(nextGuessList);
-
+        setNumberOfGuesses(numberOfGuesses + 1);
         setGuess("");
+
+        if (numberOfGuesses < NUM_OF_GUESSES_ALLOWED - 1) {
+          if (answer === guess) {
+            setGameStatus('win');
+          }
+        } else {
+          if (answer === guess) {
+            setGameStatus('win');
+          } else {
+            setGameStatus('lost');
+          }
+        }
+        /* console.log({ guess }); */
       }}
       className="guess-input-wrapper"
     >
@@ -24,6 +36,7 @@ function GuessInput({ guessList, setGuessList }) {
       <input
         type="text"
         required={true}
+        disabled={gameStatus !== 'running'}
         minLength="5"
         maxLength="5"
         value={guess}
