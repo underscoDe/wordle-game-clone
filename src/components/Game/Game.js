@@ -11,10 +11,11 @@ console.info({ answer });
 
 function Game() {
   const [guess, setGuess] = useState("");
+  const [guessesList, setGuessesList] = useState([]);
 
   return (
     <>
-      <GuessInput guess={guess} setGuess={setGuess} />
+      <GuessInput guess={guess} setGuess={setGuess} guessesList={guessesList} setGuessesList={setGuessesList} />
     </>
   );
 }
