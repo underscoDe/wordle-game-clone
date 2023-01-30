@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
-function GuessInput({ guess, setGuess, guessesList, setGuessesList }) {
+function GuessInput({guessList, setGuessList}) {
+  const [guess, setGuess] = useState("");
+
   return (
     <form
       onSubmit={(e) => {
@@ -9,9 +11,11 @@ function GuessInput({ guess, setGuess, guessesList, setGuessesList }) {
           window.alert("Your guess should be 5 characters long 💖");
           return;
         }
-        setGuessesList([...guessesList, guess])
-        console.log(guessesList);
         console.log({ guess });
+
+        const nextGuessList = [...guessList, guess];
+        setGuessList(nextGuessList);
+
         setGuess("");
       }}
       className="guess-input-wrapper"
